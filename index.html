@@ -27,25 +27,41 @@
     }
 
     button {
-      font-size: 1.8rem;
-      margin: 15px;
-      padding: 20px 30px;
-      border-radius: 8px;
-      background-color: #f0f0f0;
-      border: 2px solid #aaa;
+      font-size: 2.4rem;      /* 超特大 */
+      margin: 20px;
+      padding: 28px 48px;
+      border-radius: 14px;
+      background-color: #ffd700;
+      border: 3px solid #f57c00;
       cursor: pointer;
+      font-weight: bold;
+      color: #222;
+      box-shadow: 2px 2px 8px #ccc;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background-color: #ffec80;
     }
 
     #machine-name {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: bold;
-      margin-top: 25px;
+      margin-top: 32px;
     }
     #occult-info {
-      font-size: 1.2rem;
-      color: #009688;
-      margin-top: 12px;
-      margin-bottom: 12px;
+      font-size: 1.9rem;
+      color: #d32f2f;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      line-height: 1.3;
+    }
+    #occult-note {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 18px;
+      font-style: italic;
+      letter-spacing: 0.02em;
     }
   </style>
 </head>
@@ -56,6 +72,7 @@
   <img id="roulette-img" src="TOP.jpg" alt="ルーレット画像">
   <div id="machine-name"></div>
   <div id="occult-info"></div>
+  <div id="occult-note" style="display:none;">※これはオカルトです。真偽はご自身でお確かめください。</div>
   <br>
   <button id="start-btn" onclick="startRoulette()">台を選ぶ</button>
   <button id="retry-btn" onclick="startRoulette()" style="display:none;">もう一度選んでみる</button>
@@ -76,6 +93,7 @@
       document.getElementById("retry-btn").style.display = "none";
       document.getElementById("machine-name").textContent = "";
       document.getElementById("occult-info").textContent = "";
+      document.getElementById("occult-note").style.display = "none";
 
       // 機種決定＆プリロード
       const selected = machines[Math.floor(Math.random() * machines.length)];
@@ -97,9 +115,11 @@
         document.getElementById("roulette-img").src = selected.img;
         document.getElementById("machine-name").textContent = selected.name;
         document.getElementById("occult-info").textContent = selected.occult;
+        document.getElementById("occult-note").style.display = "block";
         document.getElementById("retry-btn").style.display = "inline-block";
       }, 3700);
     }
   </script>
 </body>
 </html>
+
