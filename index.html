@@ -26,8 +26,9 @@
       margin-bottom: 25px;
     }
 
+    /* 共通ボタン */
     button {
-      font-size: 2.4rem;      /* 超特大 */
+      font-size: 2.4rem;
       margin: 20px;
       padding: 28px 48px;
       border-radius: 14px;
@@ -41,6 +42,38 @@
     }
     button:hover {
       background-color: #ffec80;
+    }
+
+    /* 最初の「台を選ぶ」ボタンだけ超特大＆スペシャル装飾 */
+    #start-btn {
+      font-size: 3rem;
+      padding: 40px 64px;
+      border-width: 4px;
+      background: linear-gradient(90deg,#ffe066,#ffd700 50%,#fff700 100%);
+      color: #c96a00;
+      letter-spacing: 0.1em;
+      margin-top: 32px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 18px #ffd70099;
+      animation: jump 1.2s infinite;
+    }
+    @keyframes jump {
+      0% { transform: translateY(0);}
+      25% { transform: translateY(-12px);}
+      50% { transform: translateY(0);}
+      75% { transform: translateY(-6px);}
+      100% { transform: translateY(0);}
+    }
+
+    /* 「もう一度選んでみる」は標準大きめ */
+    #retry-btn {
+      font-size: 2.2rem;
+      padding: 24px 38px;
+      margin-top: 14px;
+      background: #fff8e1;
+      color: #ba8300;
+      border: 2px solid #ffd700;
+      box-shadow: 1px 2px 6px #ffd70055;
     }
 
     #machine-name {
@@ -122,4 +155,5 @@
   </script>
 </body>
 </html>
+
 
