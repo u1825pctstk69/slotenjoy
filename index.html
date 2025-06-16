@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>機種ルーレット</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    #roulette-img {
+      width: 90vw;
+      max-width: 90vw;
+      height: auto;
+      border: 2px solid #ccc;
+      margin-bottom: 25px;
+    }
+
+    button {
+      font-size: 1.8rem;
+      margin: 15px;
+      padding: 20px 30px;
+      border-radius: 8px;
+      background-color: #f0f0f0;
+      border: 2px solid #aaa;
+      cursor: pointer;
+    }
+
+    #machine-name {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 25px;
+    }
+    #occult-info {
+      font-size: 1.2rem;
+      color: #009688;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>今日は何の台の気分？</h1>
+
+  <img id="roulette-img" src="TOP.jpg" alt="ルーレット画像">
+  <div id="machine-name"></div>
+  <div id="occult-info"></div>
+  <br>
+  <button id="start-btn" onclick="startRoulette()">台を選ぶ</button>
+  <button id="retry-btn" onclick="startRoulette()" style="display:none;">もう一度選んでみる</button>
+
+  <script>
+    const machines = [
+      { name: "ジャグラーシリーズ", img: "jag1.jpg", occult: "よそ見しながら打つとペカってる!?" },
+      { name: "ジャグラーシリーズ", img: "jag2.jpg", occult: "GOGOランプをコンコンと軽く叩いてから打つとペカる！?" },
+      { name: "ジャグラーシリーズ", img: "jag3.jpg", occult: "何も考えずふらっと着席するとペカる!?" },
+      { name: "ジャグラーシリーズ", img: "jag4.jpg", occult: "プレイガイドを見ながら打つとペカる！?" },
+      { name: "ジャグラーシリーズ", img: "jag5.jpg", occult: "中ハマり時にGOGOランプを拭いてあげるとペカりやすい！?" },
+      { name: "甲鉄城のカバネリ", img: "kabaneri.jpg", occult: "3択ナビ時は左が一番多い!?" },
+      { name: "炎炎ノ消防隊", img: "enen.jpg", occult: "ラートムと言いながらレバーONで小Vベル!?" }
+    ];
+
+    function startRoulette() {
+      document.getElementById("start-btn").style.display = "none";
+      document.getElementById("retry-btn").style.display = "none";
+      document.getElementById("machine-name").textContent = "";
+      document.getElementById("occult-info").textContent = "";
+
+      // 機種決定＆プリロード
+      const selected = machines[Math.floor(Math.random() * machines.length)];
+      const preImg = new Image();
+      preImg.src = selected.img;
+
+      // 思案中
+      setTimeout(() => {
+        document.getElementById("roulette-img").src = "thinking.jpg";
+      }, 200);
+
+      // ひらめき
+      setTimeout(() => {
+        document.getElementById("roulette-img").src = "idea.jpg";
+      }, 2200);
+
+      // 機種画像（プリロード済み）
+      setTimeout(() => {
+        document.getElementById("roulette-img").src = selected.img;
+        document.getElementById("machine-name").textContent = selected.name;
+        document.getElementById("occult-info").textContent = selected.occult;
+        document.getElementById("retry-btn").style.display = "inline-block";
+      }, 3700);
+    }
+  </script>
+</body>
+</html>
